@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block own_css %}{% endblock %}
+{% block title %}
+    <title>Данные по болезням</title>
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'disease/css/dashboard.css' %}">#}
+{% endblock %}
+
+{% block content %}
+    <div id="main-div">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <span data-feather="home"></span>
+                                Главная
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <span data-feather="home"></span>
+                                Больничные
+                            </a></li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <span data-feather="home"></span>
+                                Сотрудники
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <span data-feather="home"></span>
+                                Отчеты
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-8">
+
+                    {% if disease_list %}
+                        Последние добавленные больничные карантины<br><br>
+                        {% for disease in disease_list %}
+                            {{ disease }}<br>
+                        {% endfor %}
+                    {% else %}
+                        Список пуст
+
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block own_js %}{% endblock %}
+
