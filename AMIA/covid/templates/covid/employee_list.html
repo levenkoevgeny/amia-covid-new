@@ -33,68 +33,40 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Фамилия</label>
-                                    {% render_field filter.form.employee__last_name class+="form-control" %}
+                                    {% render_field filter.form.last_name class+="form-control" %}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Подразделение</label>
-                                    {% render_field filter.form.employee__subdivision class+="form-select" %}
+                                    {% render_field filter.form.subdivision class+="form-select" %}
                                 </div>
                             </div>
                         </div>
 {#                        <hr class="dropdown-divider">#}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Вид больничного</label>
-                                    {% render_field filter.form.disease_kind class+="form-select" %}
-                                </div>
-                            </div>
-                        </div>
+{#                        <div class="row">#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="mb-3">#}
+{#                                    <label class="form-label">Вид больничного</label>#}
+{#                                    {% render_field filter.form.disease_kind class+="form-select" %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
 
 {#                        <hr class="dropdown-divider">#}
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label">Дата обращения к врачу (с)</label>
-                                    {% render_field filter.form.date_of_application_start class+="form-control" %}
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label">Дата обращения к врачу (по)</label>
-                                    {% render_field filter.form.date_of_application_start class+="form-control" %}
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label">Дата сдачи анализа (с)</label>
-                                    {% render_field filter.form.date_of_analysis_start class+="form-control" %}
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label">Дата сдачи анализа (по)</label>
-                                    {% render_field filter.form.date_of_analysis_start class+="form-control" %}
-                                </div>
-                            </div>
-                        </div>
-
-{#                        <hr class="dropdown-divider">#}
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label">Дата начала больничного/карантина (с)</label>
-                                    {% render_field filter.form.date_of_begin_start class+="form-control" %}
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label">Дата окончания больничного/карантина (по)</label>
-                                    {% render_field filter.form.date_of_begin_end class+="form-control" %}
-                                </div>
-                            </div>
+{#                        <div class="row">#}
+{#                            <div class="col-md-3">#}
+{#                                <div class="mb-3">#}
+{#                                    <label class="form-label">Дата обращения к врачу (с)</label>#}
+{#                                    {% render_field filter.form.date_of_application_start class+="form-control" %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-3">#}
+{#                                <div class="mb-3">#}
+{#                                    <label class="form-label">Дата обращения к врачу (по)</label>#}
+{#                                    {% render_field filter.form.date_of_application_start class+="form-control" %}#}
+{#                                </div>#}
+{#                            </div>#}
 {#                            <div class="col-md-3">#}
 {#                                <div class="mb-3">#}
 {#                                    <label class="form-label">Дата сдачи анализа (с)</label>#}
@@ -107,12 +79,40 @@
 {#                                    {% render_field filter.form.date_of_analysis_start class+="form-control" %}#}
 {#                                </div>#}
 {#                            </div>#}
-                        </div>
+{#                        </div>#}
+
+{#                        <hr class="dropdown-divider">#}
+{#                        <div class="row">#}
+{#                            <div class="col-md-3">#}
+{#                                <div class="mb-3">#}
+{#                                    <label class="form-label">Дата начала больничного/карантина (с)</label>#}
+{#                                    {% render_field filter.form.date_of_begin_start class+="form-control" %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-3">#}
+{#                                <div class="mb-3">#}
+{#                                    <label class="form-label">Дата окончания больничного/карантина (по)</label>#}
+{#                                    {% render_field filter.form.date_of_begin_end class+="form-control" %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-3">#}
+{#                                <div class="mb-3">#}
+{#                                    <label class="form-label">Дата сдачи анализа (с)</label>#}
+{#                                    {% render_field filter.form.date_of_analysis_start class+="form-control" %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-3">#}
+{#                                <div class="mb-3">#}
+{#                                    <label class="form-label">Дата сдачи анализа (по)</label>#}
+{#                                    {% render_field filter.form.date_of_analysis_start class+="form-control" %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
 
 
 
                         <button type="submit" class="btn btn-secondary">Поиск</button>
-                        <a href="{% url 'disease:disease-list' %}" class="btn btn-secondary">Сбросить фильтр</a>
+                        <a href="{% url 'covid:list' %}" class="btn btn-secondary">Сбросить фильтр</a>
                     </form>
                 </div>
             </div>
