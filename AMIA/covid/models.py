@@ -83,33 +83,33 @@ class VaccineKind(models.Model):
 
 
 class VaccineCourse(models.Model):
-    course_name = models.CharField(max_length=255, verbose_name="Название курса")
     vaccine_kind = models.ForeignKey(VaccineKind, on_delete=models.CASCADE, verbose_name="Вид вакцины")
     date1 = models.DateField(verbose_name="Дата проведения первой вакцинации", blank=True, null=True)
     date2 = models.DateField(verbose_name="Дата проведения второй вакцинации", blank=True, null=True)
-    employees = models.ManyToManyField(Employee, through='Vaccination')
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Сотрудник/курсант")
+    add_date_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.vaccine_kind.kind
+        return self.vaccine_kind.kind + ' ' + self.employee.last_name
 
     class Meta:
-        ordering = ('vaccine_kind',)
+        ordering = ('id',)
         verbose_name = 'Курс вакцинации'
         verbose_name_plural = 'Курсы вакцинации'
 
 
-class Vaccination(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Сотрудник")
-    vaccine_course = models.ForeignKey(VaccineCourse, on_delete=models.CASCADE, verbose_name="Курс вакцинации")
-    last_modified = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.employee.last_name
-
-    class Meta:
-        ordering = ('employee',)
-        verbose_name = 'Вакцинация'
-        verbose_name_plural = 'Вакцинации'
+# class Vaccination(models.Model):
+#     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Сотрудник")
+#     vaccine_course = models.ForeignKey(VaccineCourse, on_delete=models.CASCADE, verbose_name="Курс вакцинации")
+#     last_modified = models.DateField(auto_now_add=True)
+#
+#     def __str__(self):
+#         return self.employee.last_name
+#
+#     class Meta:
+#         ordering = ('employee',)
+#         verbose_name = 'Вакцинация'
+#         verbose_name_plural = 'Вакцинации'
 
 # class Vaccination(models.Model):
 #     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Сотрудник")

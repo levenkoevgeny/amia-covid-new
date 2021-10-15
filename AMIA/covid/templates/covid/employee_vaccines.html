@@ -11,30 +11,50 @@
     <div id="main-div">
         <div class="container">
             <br>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <a href="">Добавить курс вакцинирования</a>
-                </div>
+            <div class="d-flex justify-content-end">
+                <a href="" class="link-secondary"
+                   onclick="window.open('{% url 'covid:employee-vaccines-add' employee.id %}','popup','width=300,height=400'); return false;">
+                    <b>Добавить
+                        курс вакцинирования</b>
+                </a>
             </div>
+            <br>
+            {% if not employee.vaccinecourse_set.all %}
+                <p>Список пуст</p>
+            {% else %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">№ п.п</th>
+                        <th scope="col">Вид вакцины</th>
+                        <th scope="col">Дата первой вакцинации</th>
+                        <th scope="col">Дата второй вакцинации</th>
+                        <th scope="col">Дата добавления курса</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for vaccine in employee.vaccinecourse_set.all %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="" class="link-secondary"
+                                   onclick="window.open('{% url 'covid:employee-vaccines-update' employee.id vaccine.id %}','popup','width=300,height=400'); return false;">{{ vaccine.vaccine_kind }}</a>
+                            </td>
+                            <td>{{ vaccine.date1|default_if_none:"Нет данных" }}</td>
+                            <td>{{ vaccine.date2|default_if_none:"Нет данных" }}</td>
+                            <td>{{ vaccine.add_date_time|default_if_none:"Нет данных" }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
 
 
-
-            {% for vaccine in employee.vaccination_set.all %}
-                {{ forloop.counter }} {{ vaccine }}
-            {% endfor %}
         </div>
     </div>
 {% endblock %}
 
-{% block own_js %}{% endblock %}
+{% block own_js %}
+
+
+{% endblock %}
 
