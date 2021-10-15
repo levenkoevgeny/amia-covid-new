@@ -141,13 +141,13 @@
                     {% for disease in diseases_list %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
-                            <td>{{ disease.employee.last_name }}</td>
+                            <td><a href="{% url 'covid:employee-info' disease.employee.id %}" class="link-secondary">{{ disease.employee.last_name }}</a></td>
                             <td>{{ disease.employee.first_name|default_if_none:"" }}</td>
                             <td>{{ disease.employee.patronymic|default_if_none:"" }}</td>
                             <td><a href="{% url 'disease:disease-update' disease.id %}" class="link-secondary">{{ disease.get_disease_kind|default_if_none:"" }}</a></td>
                             <td>{{ disease.disease|default_if_none:"Нет" }}</td>
-                            <td>{{ disease.date_of_begin }}</td>
-                            <td>{{ disease.date_of_end }}</td>
+                            <td>{{ disease.date_of_begin|default_if_none:"" }}</td>
+                            <td>{{ disease.date_of_end|default_if_none:"" }}</td>
                         </tr>
                     {% endfor %}
 

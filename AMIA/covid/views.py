@@ -29,8 +29,11 @@ def employee_update(request, employee_id):
     return render(request, 'covid/employee_update_form.html')
 
 
-def employee_info(request):
-    return render(request, 'covid/employee_info.html')
+def employee_info(request, employee_id):
+    path = str(request.get_full_path())
+    request.session['next_path'] = path
+    employee = get_object_or_404(Employee, pk=employee_id)
+    return render(request, 'covid/employee_info.html', {'employee': employee})
 
 
 def employee_vaccines(request, employee_id):
