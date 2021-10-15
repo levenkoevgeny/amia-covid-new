@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+admin.site.register(HealthStatus)
+admin.site.register(Consequence)
+admin.site.register(DiseaseName)
+admin.site.register(Disease)

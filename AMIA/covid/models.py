@@ -32,17 +32,34 @@ class Position(models.Model):
         verbose_name_plural = 'Должности'
 
 
+class Rank(models.Model):
+    rank = models.CharField(verbose_name="Фамилия", max_length=50)
+
+    def __str__(self):
+        return self.rank
+
+    class Meta:
+        ordering = ('rank',)
+        verbose_name = 'Звание'
+        verbose_name_plural = 'Звания'
+
+
 class Employee(models.Model):
+    SEX = [
+        (1, 'Мужской'),
+        (2, 'Женский'),
+    ]
     last_name = models.CharField(verbose_name="Фамилия", max_length=30)
     first_name = models.CharField(verbose_name="Имя", max_length=30, blank=True, null=True)
     patronymic = models.CharField(verbose_name="Отчество", max_length=30, blank=True, null=True)
     subdivision = models.ForeignKey(Subdivision, on_delete=models.SET_NULL, verbose_name="Подразделение", blank=True,
                                     null=True)
+    sex = models.IntegerField(choices=SEX, verbose_name="Пол", blank=True, null=True)
+    rank = models.ForeignKey(Rank, on_delete=models.CASCADE, verbose_name="Звание", blank=True, null=True)
     position = models.ForeignKey(Position, on_delete=models.SET_NULL, verbose_name="Должность", blank=True, null=True)
     phone_number = models.CharField(verbose_name="Номер телефона", max_length=30, blank=True, null=True)
     date_of_birth = models.DateField(verbose_name="Дата рождения", blank=True, null=True)
     last_modified = models.DateTimeField(verbose_name="Дата и время последнего редактирования", auto_now=True)
-    # vaccinations = models.ManyToManyField(Vaccination, through=Vaccination)
 
     def __str__(self):
         return self.last_name

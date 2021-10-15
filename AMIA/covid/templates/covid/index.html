@@ -1,10 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block own_css %}{% endblock %}
+{% block title %}
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'covid/css/features.css' %}">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div id="main-div">
+        <div class="container px-4 py-5" id="featured-3">
+            <h2 class="pb-2 border-bottom">Выберите раздел</h2>
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                <div class="feature col">
+                    <div class="feature-icon bg-primary bg-gradient">
+                        <svg class="bi" width="1em" height="1em">
+                            <use xlink:href=""/>
+                        </svg>
+                    </div>
+                    <h2>Учет вакцинаций (ППС)</h2>
+                    <p>Раздел учета вакцинаци профессорско-преподавательского состава Академии</p>
+                    <a href="#" class="icon-link">
+                        Перейти в раздел
+                        <svg class="bi" width="1em" height="1em">
+                            <use xlink:href="#chevron-right"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="feature col">
+                    <div class="feature-icon bg-primary bg-gradient">
+                        <svg class="bi" width="1em" height="1em">
+                            <use xlink:href="#people-circle"/>
+                        </svg>
+                    </div>
+                    <h2>Учет вакцинаций (курсанты)</h2>
+                    <p>Раздел учета вакцинаци курсантов Академии</p>
+                    <a href="#" class="icon-link">
+                        Перейти в раздел
+                        <svg class="bi" width="1em" height="1em">
+                            <use xlink:href="#chevron-right"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="feature col">
+                    <div class="feature-icon bg-primary bg-gradient">
+                        <svg class="bi" width="1em" height="1em">
+                            <use xlink:href="#toggles2"/>
+                        </svg>
+                    </div>
+                    <h2>Учет болезней</h2>
+                    <p>Раздел учета и анализа больничных листов сотрудников Академии</p>
+                    <a href="{% url 'disease:index' %}" class="icon-link">
+                        Перейти в раздел
+                        <svg class="bi" width="1em" height="1em">
+                            <use xlink:href="#chevron-right"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block own_js %}{% endblock %}

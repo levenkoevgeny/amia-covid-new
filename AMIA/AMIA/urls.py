@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    path('covid/', include('covid.urls')),
+    path('disease/', include('disease.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
