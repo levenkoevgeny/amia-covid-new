@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block own_css %}{% endblock %}
+{% block title %}
+    <title>{{ employee.last_name }}</title>
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'disease/css/dashboard.css' %}">#}
+{% endblock %}
+
+{% block content %}
+    <div id="main-div">
+        <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="">Добавить курс вакцинирования</a>
+                </div>
+            </div>
+
+
+
+            {% for vaccine in employee.vaccination_set.all %}
+                {{ forloop.counter }} {{ vaccine }}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block own_js %}{% endblock %}
+

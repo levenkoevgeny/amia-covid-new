@@ -58,12 +58,20 @@ class Disease(models.Model):
     date_of_end = models.DateField(verbose_name="Дата окончания больничного/карантина", blank=True, null=True)
     diagnosis = models.TextField(verbose_name="Диагноз", blank=True, null=True)
     where_treated = models.IntegerField(choices=WHERE_TREATED, verbose_name="Где лечится")
-    health_status = models.ForeignKey(HealthStatus, on_delete=models.SET_NULL, blank=True, null=True)
+    health_status = models.ForeignKey(HealthStatus, on_delete=models.SET_NULL, verbose_name="Состояние здоровья", blank=True, null=True)
     consequence = models.ForeignKey(Consequence, on_delete=models.SET_NULL, verbose_name="Последствие болезни", blank=True, null=True)
     extra_data = models.TextField(verbose_name="Дополнительная информация", blank=True, null=True)
 
     def __str__(self):
         return self.employee.last_name
+
+    @property
+    def get_disease_kind(self):
+        return self.DISEASE_KIND[self.disease_kind-1][1]
+
+    @property
+    def get_where_treated(self):
+        return self.WHERE_TREATED[self.where_treated - 1][1]
 
     class Meta:
         ordering = ('employee',)

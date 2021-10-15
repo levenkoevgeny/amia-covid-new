@@ -26,7 +26,7 @@
     <link rel="shortcut icon" href="{% static 'covid/img/favicon.ico' %}"/>
 </head>
 <body>
-<nav class="navbar-expand-lg navbar navbar-dark bg-primary">
+<nav class="navbar-expand-lg navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <img src="{% static 'covid/img/favicon.ico' %}" alt="" width="30" height="24"
@@ -70,25 +70,24 @@
 <script src="{% static 'covid/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'covid/js/popoverLocal.js' %}"></script>
 
-<script>
-    $(document).ready(function () {
-        $("#subdivisionsTable").tablesorter({
-
+{#<script>#}
+{#    $(document).ready(function () {#}
+{#        $("#subdivisionsTable").tablesorter({#}
+{##}
             {#sortList: [[0, 0]],#}
-            widgets: ["saveSort"],
-            widgetOptions: {
-                // enable/disable saveSort dynamically
-                saveSort: true
-            }
-        });
-        $("#employeesTable").tablesorter({sortList: [[0, 0]]});
-    });
-</script>
+{#            widgets: ["saveSort"],#}
+{#            widgetOptions: {#}
+{#                // enable/disable saveSort dynamically#}
+{#                saveSort: true#}
+{#            }#}
+{#        });#}
+{#        $("#employeesTable").tablesorter({sortList: [[0, 0]]});#}
+{#    });#}
+{#</script>#}
 
 <script>
     (function () {
         'use strict'
-
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.querySelectorAll('.needs-validation')
 
@@ -100,20 +99,19 @@
                         event.preventDefault()
                         event.stopPropagation()
                     }
-
                     form.classList.add('was-validated')
                 }, false)
             })
     })()
 </script>
-<script>
-    $('a').click(function () {
-        $('#main-div').addClass('d-flex justify-content-center align-items-center');
-        $('#main-div').css('height', '94vh');
-        $('#main-div').html('<div><div class="spinner-border text-primary" role="status" style="width: 4rem;height: 4rem;"><span class="sr-only">Loading...</span></div></div>');
-    });
-    console.log($('#main-div').clientHeight)
-</script>
+{#<script>#}
+{#    $('a').click(function () {#}
+{#        $('#main-div').addClass('d-flex justify-content-center align-items-center');#}
+{#        $('#main-div').css('height', '94vh');#}
+{#        $('#main-div').html('<div><div class="spinner-border text-primary" role="status" style="width: 4rem;height: 4rem;"><span class="sr-only">Loading...</span></div></div>');#}
+{#    });#}
+{#    console.log($('#main-div').clientHeight)#}
+{#</script>#}
 
 {% block own_js %}
 

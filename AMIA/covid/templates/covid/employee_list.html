@@ -19,9 +19,7 @@
                     <h5><span class="badge bg-secondary">10</span> сейчас открыто больничных листов</h5>
                 </div>
             </div>
-
             <br><br>
-
             <p>
                 <a class="link-secondary" data-bs-toggle="collapse" href="#collapseExample" role="button"
                    aria-expanded="false" aria-controls="collapseExample">
@@ -120,10 +118,10 @@
             </div>
         </div>
         <div class="container-fluid">
-            <div style="text-align: right">
-                <a href="{% url 'disease:disease-input' %}" class="link-secondary"><b>Новый больничный</b></a>
-            </div>
-            {% if diseases_list %}
+{#            <div style="text-align: right">#}
+{#                <a href="{% url 'covid:employee-add' %}" class="link-secondary"><b>Новый сотрудник</b></a>#}
+{#            </div>#}
+            {% if employees_list %}
                 <table class="table">
                     <thead>
                     <tr>
@@ -131,27 +129,23 @@
                         <th scope="col">Фамилия</th>
                         <th scope="col">Имя</th>
                         <th scope="col">Отчество</th>
-                        <th scope="col">Тип больничного</th>
-                        <th scope="col">Болезнь</th>
-                        <th scope="col">Дата открытия больничного</th>
-                        <th scope="col">Дата закрытия больничного</th>
+                        <th scope="col">Дата рождения</th>
+                        <th scope="col">Дата и время посделнего редактирования</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for disease in diseases_list %}
+                    {% for employee in employees_list %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
-                            <td>{{ disease.employee.last_name }}</td>
-                            <td>{{ disease.employee.first_name|default_if_none:"" }}</td>
-                            <td>{{ disease.employee.patronymic|default_if_none:"" }}</td>
-                            <td><a href="{% url 'disease:disease-update' disease.id %}" class="link-secondary">{{ disease.get_disease_kind|default_if_none:"" }}</a></td>
-                            <td>{{ disease.disease|default_if_none:"Нет" }}</td>
-                            <td>{{ disease.date_of_begin }}</td>
-                            <td>{{ disease.date_of_end }}</td>
+                            <td><a href="{% url 'covid:employee-vaccines' employee.id %}" class="link-secondary">{{ employee.last_name }}</a></td>
+                            <td>{{ employee.first_name|default_if_none:"Нет данных" }}</td>
+                            <td>{{ employee.patronymic|default_if_none:"Нет данных" }}</td>
+                            <td>{{ employee.date_of_birth|default_if_none:"Нет данных" }}</td>
+                            <td>{{ employee.last_modified|default_if_none:"Нет данных" }}</td>
+                            <td>{{ employee.last_modified|default_if_none:"Нет данных" }}</td>
                         </tr>
                     {% endfor %}
-
-
                     </tbody>
                 </table>
             {% else %}

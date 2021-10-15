@@ -21,7 +21,7 @@ class Subdivision(models.Model):
 
 
 class Position(models.Model):
-    position = models.CharField(verbose_name="Фамилия", max_length=255)
+    position = models.CharField(verbose_name="Должность", max_length=255)
 
     def __str__(self):
         return self.position
@@ -82,25 +82,47 @@ class VaccineKind(models.Model):
         verbose_name_plural = 'Виды вакцины'
 
 
-class Vaccination(models.Model):
-    VACCINE_ORDER = [
-        (1, 'Первая'),
-        (2, 'Вторая'),
-    ]
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Сотрудник")
+class VaccineCourse(models.Model):
+    course_name = models.CharField(max_length=255, verbose_name="Название курса")
     vaccine_kind = models.ForeignKey(VaccineKind, on_delete=models.CASCADE, verbose_name="Вид вакцины")
-    date = models.DateField(verbose_name="Дата проведения вакцинации")
-    order = models.IntegerField(choices=VACCINE_ORDER, verbose_name="Очередность вакцины")
+    date1 = models.DateField(verbose_name="Дата проведения первой вакцинации", blank=True, null=True)
+    date2 = models.DateField(verbose_name="Дата проведения второй вакцинации", blank=True, null=True)
+    employees = models.ManyToManyField(Employee, through='Vaccination')
 
     def __str__(self):
-        return self.employee.last_name + ' ' + str(self.order) + ' ' + self.vaccine_kind.kind + ' ' + str(self.date)
+        return self.vaccine_kind.kind
 
     class Meta:
-        ordering = ('-date',)
+        ordering = ('vaccine_kind',)
+        verbose_name = 'Курс вакцинации'
+        verbose_name_plural = 'Курсы вакцинации'
+
+
+class Vaccination(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Сотрудник")
+    vaccine_course = models.ForeignKey(VaccineCourse, on_delete=models.CASCADE, verbose_name="Курс вакцинации")
+    last_modified = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.employee.last_name
+
+    class Meta:
+        ordering = ('employee',)
         verbose_name = 'Вакцинация'
         verbose_name_plural = 'Вакцинации'
 
+# class Vaccination(models.Model):
+#     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Сотрудник")
+#     vaccine_course = models.ForeignKey(VaccineCourse, on_delete=models.SET_NULL, verbose_name="Курс вакцинации",
+#                                        null=True, blank=True)
 
+    # vaccine_kind = models.ForeignKey(VaccineKind, on_delete=models.CASCADE, verbose_name="Вид вакцины")
+    # date = models.DateField(verbose_name="Дата проведения вакцинации")
 
-
-
+    # def __str__(self):
+    #     return self.employee.last_name
+    #
+    # class Meta:
+    #     ordering = ('employee',)
+    #     verbose_name = 'Вакцинация'
+    #     verbose_name_plural = 'Вакцинации'

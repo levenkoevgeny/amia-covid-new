@@ -1,80 +1,80 @@
-{% extends "base.html" %}
-{% load static %}
-{% load widget_tweaks %}
-{% block own_css %}{% endblock %}
-{% block title %}
-    <title>Index</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'covid/css/features.css' %}">
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-{% endblock %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="./all.css" rel="stylesheet">
+    <link href="./fontawesome.css" rel="stylesheet">
+    <title>Home</title>
+</head>
+<body>
 
-{% block content %}
-    <div id="main-div">
-        <div class="container px-4 py-5" id="featured-3">
-            <h2 class="pb-2 border-bottom">Выберите раздел</h2>
-            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                <div class="feature col">
-                    <div class="feature-icon bg-primary bg-gradient">
-                        <svg class="bi" width="1em" height="1em">
-                            <use xlink:href=""/>
-                        </svg>
-                    </div>
-                    <h2>Учет вакцинаций (ППС)</h2>
-                    <p>Раздел учета вакцинаци профессорско-преподавательского состава Академии</p>
-                    <a href="#" class="icon-link">
+<div class="container">
+    <div class="container px-4 py-5" id="hanging-icons">
+        <h2 class="pb-2 border-bottom">Выберите раздел</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                    <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
+                </div>
+                <div>
+                    <h2>Вакцинация (ППС)</h2>
+                    <p>Сведения о вакцинации профессорско-преподавательского состава Академии</p>
+                    <a href="{% url 'covid:list' %}" class="btn btn-secondary">
                         Перейти в раздел
-                        <svg class="bi" width="1em" height="1em">
-                            <use xlink:href="#chevron-right"/>
-                        </svg>
                     </a>
                 </div>
-                <div class="feature col">
-                    <div class="feature-icon bg-primary bg-gradient">
-                        <svg class="bi" width="1em" height="1em">
-                            <use xlink:href="#people-circle"/>
-                        </svg>
-                    </div>
-                    <h2>Учет вакцинаций (курсанты)</h2>
-                    <p>Раздел учета вакцинаци курсантов Академии</p>
-                    <a href="#" class="icon-link">
+            </div>
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                    <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg>
+                </div>
+                <div>
+                    <h2>Вакцинация (курсанты)</h2>
+                    <p>Сведения о вакцинации курсантов Академии</p>
+                    <a href="#" class="btn btn-secondary">
                         Перейти в раздел
-                        <svg class="bi" width="1em" height="1em">
-                            <use xlink:href="#chevron-right"/>
-                        </svg>
                     </a>
                 </div>
-                <div class="feature col">
-                    <div class="feature-icon bg-primary bg-gradient">
-                        <svg class="bi" width="1em" height="1em">
-                            <use xlink:href="#toggles2"/>
-                        </svg>
-                    </div>
-                    <h2>Учет болезней</h2>
-                    <p>Раздел учета и анализа больничных листов сотрудников Академии</p>
-                    <a href="{% url 'disease:index' %}" class="icon-link">
+            </div>
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                    <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"/></svg>
+                </div>
+                <div>
+                    <h2>Больничные листы</h2>
+                    <p>Сведения о заболеваемости COVID-19 в Академии</p>
+                    <a href="./diseases_main.html" class="btn btn-secondary">
                         Перейти в раздел
-                        <svg class="bi" width="1em" height="1em">
-                            <use xlink:href="#chevron-right"/>
-                        </svg>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="d-flex align-items-center">
+            <span class="text-muted">&copy; 2021 Отдел образовательных информационных технологий (+375-44-723-48-13)</span>
+        </div>
+    </footer>
+</div>
 
-{% block own_js %}{% endblock %}
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+-->
+</body>
+</html>
