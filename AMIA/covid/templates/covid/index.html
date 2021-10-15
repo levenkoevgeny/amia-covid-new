@@ -20,11 +20,11 @@
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div class="col d-flex align-items-start">
                 <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                    <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
+{#                    <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>#}
                 </div>
                 <div>
-                    <h2>Вакцинация (ППС)</h2>
-                    <p>Сведения о вакцинации профессорско-преподавательского состава Академии</p>
+                    <h2>Вакцинация</h2>
+                    <p>Сведения о вакцинации офицеров и гражданского персонала Академии</p>
                     <a href="{% url 'covid:list' %}" class="btn btn-secondary">
                         Перейти в раздел
                     </a>
@@ -32,7 +32,7 @@
             </div>
             <div class="col d-flex align-items-start">
                 <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                    <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg>
+{#                    <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg>#}
                 </div>
                 <div>
                     <h2>Вакцинация (курсанты)</h2>
@@ -44,12 +44,12 @@
             </div>
             <div class="col d-flex align-items-start">
                 <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                    <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"/></svg>
+{#                    <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"/></svg>#}
                 </div>
                 <div>
                     <h2>Больничные листы</h2>
                     <p>Сведения о заболеваемости COVID-19 в Академии</p>
-                    <a href="./diseases_main.html" class="btn btn-secondary">
+                    <a href="{% url 'disease:disease-list' %}" class="btn btn-secondary">
                         Перейти в раздел
                     </a>
                 </div>

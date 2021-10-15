@@ -37,7 +37,7 @@
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td><a href="" class="link-secondary"
-                                   onclick="window.open('{% url 'covid:employee-vaccines-update' employee.id vaccine.id %}','popup','width=300,height=400'); return false;">{{ vaccine.vaccine_kind }}</a>
+                                   onclick="window.open('{% url 'covid:employee-vaccines-update' vaccine.id %}','popup','width=300,height=400'); return false;">{{ vaccine.vaccine_kind }}</a>
                             </td>
                             <td>{{ vaccine.date1|default_if_none:"Нет данных" }}</td>
                             <td>{{ vaccine.date2|default_if_none:"Нет данных" }}</td>

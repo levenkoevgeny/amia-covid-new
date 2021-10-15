@@ -51,6 +51,9 @@ def employee_vaccines_add_form(request, employee_id):
         if form.is_valid():
             vac_course = form.save(commit=False)
             vac_course.employee = get_object_or_404(Employee, pk=employee_id)
+            if vac_course.vaccine_kind.is_one_component:
+                if vac_course.date1:
+                    vac_course.date2 = vac_course.date1
             vac_course.save()
             return JsonResponse({'': ''}, safe=False)
         else:
@@ -63,12 +66,16 @@ def employee_vaccines_add_form(request, employee_id):
                                                       })
 
 
-def employee_vaccines_update_form(request, employee_id, vaccine_course_id):
+def employee_vaccines_update_form(request, vaccine_course_id):
     if request.method == 'POST':
         obj = get_object_or_404(VaccineCourse, pk=vaccine_course_id)
         form = VaccineCourseForm(request.POST, instance=obj)
         if form.is_valid():
-            form.save()
+            vac_course = form.save(commit=False)
+            if vac_course.vaccine_kind.is_one_component:
+                if vac_course.date1:
+                    vac_course.date2 = vac_course.date1
+            vac_course.save()
             return JsonResponse({'': ''}, safe=False)
         else:
             error_message = "Заполните правильно форму!"
@@ -76,10 +83,10 @@ def employee_vaccines_update_form(request, employee_id, vaccine_course_id):
     else:
         vac_course = get_object_or_404(VaccineCourse, pk=vaccine_course_id)
         form = VaccineCourseForm(instance=vac_course)
-    return render(request, 'covid/vaccine_update.html', {'employee_id': employee_id,
-                                                         'vac_course': vac_course,
-                                                         'form': form
-                                                         })
+    return render(request, 'covid/vaccine_update.html', {
+        'vac_course': vac_course,
+        'form': form
+    })
 
 
 def employee_delete(request):

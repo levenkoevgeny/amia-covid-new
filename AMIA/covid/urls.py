@@ -10,7 +10,7 @@ urlpatterns = [
     path('<employee_id>/update', views.employee_update, name='employee-update'),
     path('<employee_id>/vaccines', views.employee_vaccines, name='employee-vaccines'),
     path('<employee_id>/vaccines-add', views.employee_vaccines_add_form, name='employee-vaccines-add'),
-    path('<employee_id>/<vaccine_course_id>/vaccines-update', views.employee_vaccines_update_form, name='employee-vaccines-update'),
+    path('<vaccine_course_id>/vaccines-update', views.employee_vaccines_update_form, name='employee-vaccines-update'),
 
     # path('', views.index, name='index'),
     # path('<subdivision_id>/update', views.subdivision_update, name='subdivision_update'),
