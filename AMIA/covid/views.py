@@ -15,10 +15,20 @@ def employee_list(request):
     request.session['next_path'] = path
     employees_list = Employee.objects.all()
     f = EmployeeFilter(request.GET, queryset=employees_list)
+    condition = "all"
+    if 'is_vaccinated' in request.GET:
+        if request.GET['is_vaccinated'] == "all":
+            result = f.qs
+        else:
+            condition = bool(request.GET['is_vaccinated'])
+            result = [row for row in f.qs if row.get_is_vaccinated is condition]
+    else:
+        result = f.qs
     return render(request, 'covid/employee/employee_list.html',
-                  {'employees_list': f.qs,
-                   'filter': f}
-                  )
+                  {'employees_list': result,
+                   'filter': f,
+                   'condition': str(condition),
+                   })
 
 
 def employee_input(request):
@@ -54,7 +64,7 @@ def employee_update(request, employee_id):
             else:
                 return HttpResponseRedirect(reverse('covid:list'))
         else:
-            return render(request, 'disease/disease_update_form.html', {'form': form, 'disease': obj, })
+            return render(request, 'covid/employee/employee_update_form.html', {'form': form, 'employee': obj, })
     else:
         employee = get_object_or_404(Employee, pk=employee_id)
         if request.user.is_superuser:

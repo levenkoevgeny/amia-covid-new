@@ -21,7 +21,7 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path('', TemplateView.as_view(template_name='covid/index.html')),
     path('covid/', include('covid.urls')),
-    path('covid-cadet/', include('covid_cadet.urls')),
+    path('covid_cadet/', include('covid_cadet.urls')),
     path('disease/', include('disease.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),

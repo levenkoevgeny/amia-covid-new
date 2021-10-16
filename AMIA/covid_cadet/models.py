@@ -27,6 +27,9 @@ class Course(models.Model):
     last_modified = models.DateTimeField(verbose_name="Дата и время последнего редактирования", auto_now=True,
                                          blank=True, null=True)
 
+    def __str__(self):
+        return self.course_name + ' ' + self.faculty.subdivision_name
+
     class Meta:
         ordering = ('course_name',)
         verbose_name = 'Курс'
@@ -92,4 +95,4 @@ class EmployeeCadet(models.Model):
     class Meta:
         ordering = ('last_name',)
         verbose_name = 'Курсант'
-        verbose_name_plural = 'Курсанты'
+        verbose_name_plural = '4. Курсанты'

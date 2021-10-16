@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 {% block own_css %}{% endblock %}
 {% block title %}
-    <title>Добавление нового сотрудника</title>
+    <title>Добавление нового курсанта</title>
     {#    <link rel="stylesheet" type="text/css" href="{% static 'disease/css/dashboard.css' %}">#}
 {% endblock %}
 
@@ -21,7 +21,7 @@
             {% endif %}
         {% endfor %}
         {% block form_title %}
-            <form class="needs-validation" action="{% url 'covid:employee-add' %}" method="post">{% csrf_token %}
+            <form class="needs-validation" action="{% url 'covid_cadet:employee-cadet-input' %}" method="post">{% csrf_token %}
         {% endblock %}
         <div class="row">
             <div class="col-md-4">
@@ -47,8 +47,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label class="form-label">Подразделение</label>
-                    {% render_field form.subdivision class+="form-control" %}
+                    <label class="form-label">Группа</label>
+                    {% render_field form.group_fk class+="form-control" %}
                 </div>
             </div>
             <div class="col-md-4">

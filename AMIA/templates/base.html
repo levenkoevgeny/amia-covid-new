@@ -49,7 +49,8 @@
                             База сотрудников
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'covid:subdivisions' %}">По подразделениям</a></li>
+                            <li><a class="dropdown-item" href="{% url 'covid:subdivisions' %}">По подразделениям</a>
+                            </li>
                             <li><a class="dropdown-item" href="{% url 'covid:list' %}">Общий список</a></li>
                         </ul>
                     </li>
@@ -59,8 +60,10 @@
                             База курсантов
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">По факультетам</a></li>
-                            <li><a class="dropdown-item" href="#">Общий список</a></li>
+                            <li><a class="dropdown-item" href="{% url 'covid_cadet:subdivision-list' %}">По
+                                факультетам</a></li>
+                            <li><a class="dropdown-item" href="{% url 'covid_cadet:employee-cadet-list' %}">Общий
+                                список</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -129,6 +132,12 @@
 {#    });#}
 {#    console.log($('#main-div').clientHeight)#}
 {#</script>#}
+
+<script>
+    $(document).ready(function () {
+        $('.my-select2').select2();
+    });
+</script>
 
 {% block own_js %}
 

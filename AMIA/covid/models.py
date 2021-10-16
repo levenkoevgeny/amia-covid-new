@@ -84,6 +84,13 @@ class Employee(models.Model):
     def __str__(self):
         return self.last_name
 
+    @property
+    def get_is_vaccinated(self):
+        if self.vaccinecourse_set.exists():
+            return True
+        else:
+            return False
+
     class Meta:
         ordering = ('last_name',)
         verbose_name = 'Сотрудник'
