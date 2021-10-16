@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'covid.apps.CovidConfig',
     'disease.apps.DiseaseConfig',
+    'covid_cadet.apps.CovidCadetConfig',
+    'covid_old.apps.CovidOldConfig',
+    'covid_kadet_old.apps.CovidKadetOldConfig',
     'widget_tweaks',
 ]
 
