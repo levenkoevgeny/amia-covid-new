@@ -49,17 +49,36 @@ class Employee(models.Model):
         (1, 'Мужской'),
         (2, 'Женский'),
     ]
+
+    WORK_STATUS = [
+        (1, 'Работает'),
+        (2, 'Уволен'),
+    ]
+
+    MARITAL_STATUS = [
+        (1, 'Холостой/Не замужем'),
+        (2, 'Женат/Замужем'),
+        (3, 'Разведен/Разведена'),
+        (4, 'Вдова/Вдовец'),
+    ]
+
     last_name = models.CharField(verbose_name="Фамилия", max_length=30)
     first_name = models.CharField(verbose_name="Имя", max_length=30, blank=True, null=True)
     patronymic = models.CharField(verbose_name="Отчество", max_length=30, blank=True, null=True)
     subdivision = models.ForeignKey(Subdivision, on_delete=models.SET_NULL, verbose_name="Подразделение", blank=True,
                                     null=True)
     sex = models.IntegerField(choices=SEX, verbose_name="Пол", blank=True, null=True)
+    work_status = models.IntegerField(choices=WORK_STATUS, verbose_name="Рабочий статус", default=1)
+    marital_status = models.IntegerField(choices=MARITAL_STATUS, verbose_name="Семейное положение", blank=True,
+                                         null=True)
     rank = models.ForeignKey(Rank, on_delete=models.CASCADE, verbose_name="Звание", blank=True, null=True)
     position = models.ForeignKey(Position, on_delete=models.SET_NULL, verbose_name="Должность", blank=True, null=True)
     phone_number = models.CharField(verbose_name="Номер телефона", max_length=30, blank=True, null=True)
     address = models.CharField(verbose_name="Адрес", max_length=255, blank=True, null=True)
     date_of_birth = models.DateField(verbose_name="Дата рождения", blank=True, null=True)
+    date_of_death = models.DateField(verbose_name="Дата смерти", blank=True, null=True)
+    has_contraindications = models.BooleanField(verbose_name="Имеет противопоказания к прививке", default=False)
+    contraindications_explain = models.TextField(verbose_name="Пояснение к противопоказаниям", blank=True, null=True)
     last_modified = models.DateTimeField(verbose_name="Дата и время последнего редактирования", auto_now=True)
 
     def __str__(self):
