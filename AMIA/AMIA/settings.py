@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'covid.apps.CovidConfig',
     'disease.apps.DiseaseConfig',
-    # 'covid_cadet.apps.CovidCadetConfig',
-    # 'covid_old.apps.CovidOldConfig',
-    # 'covid_kadet_old.apps.CovidKadetOldConfig',
+    'covid_cadet.apps.CovidCadetConfig',
+    'covid_old.apps.CovidOldConfig',
+    'covid_kadet_old.apps.CovidKadetOldConfig',
     'widget_tweaks',
 ]
 
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'AMIA.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db5.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db3.sqlite3'),
     }
 }
 
