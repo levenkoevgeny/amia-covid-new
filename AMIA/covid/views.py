@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Employee, VaccineCourse, VaccineKind, Subdivision
-from .filters import EmployeeFilter
+from .filters import EmployeeFilter, SubdivisionFilter
 from django.shortcuts import get_object_or_404
 from .forms import VaccineCourseForm, EmployeeDataForm, EmployeeFullDataForm
 from django.http import HttpResponseRedirect, JsonResponse
@@ -8,13 +8,59 @@ from django.shortcuts import get_object_or_404
 from django.db import transaction
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.decorators import login_required
 
 
+def subdivision_get_employee_count_sum(subdivisions_list):
+    count = 0
+    for subdivision in subdivisions_list:
+        count += subdivision.get_employee_count
+    return count
+
+
+def subdivision_get_covid_1_count_sum(subdivisions_list):
+    count = 0
+    for subdivision in subdivisions_list:
+        count += subdivision.get_employee_count_with_first_vaccine
+    return count
+
+
+def subdivision_get_covid_2_count_sum(subdivisions_list):
+    count = 0
+    for subdivision in subdivisions_list:
+        count += subdivision.get_employee_count_with_second_vaccine
+    return count
+
+
+# def get_willing_count_sum(subdivision_list):
+#     count = 0
+#     for subdivision in subdivision_list:
+#         count += subdivision.get_willing_count
+#     return count
+
+
+def subdivision_get_covid_percent_sum_first(subdivisions_list):
+    try:
+        res = subdivision_get_covid_1_count_sum(subdivisions_list) / subdivision_get_employee_count_sum(subdivisions_list) * 100
+    except ZeroDivisionError:
+        res = 0.0
+    return round(res, 2)
+
+
+def subdivision_get_covid_percent_sum_second(subdivisions_list):
+    try:
+        res = subdivision_get_covid_2_count_sum(subdivisions_list) / subdivision_get_employee_count_sum(subdivisions_list) * 100
+    except ZeroDivisionError:
+        res = 0.0
+    return round(res, 2)
+
+
+@login_required
 def employee_list(request):
     path = str(request.get_full_path())
     request.session['next_path'] = path
     employees_list = Employee.objects.all()
-    f = EmployeeFilter(request.GET, queryset=employees_list)
+    f = EmployeeFilter(request.GET, queryset=employees_list, request=request)
     condition = "all"
     if 'is_vaccinated' in request.GET:
         if request.GET['is_vaccinated'] == "all":
@@ -31,6 +77,7 @@ def employee_list(request):
                    })
 
 
+@login_required
 def employee_input(request):
     if request.method == 'POST':
         form = EmployeeFullDataForm(request.POST)
@@ -47,6 +94,7 @@ def employee_input(request):
         return render(request, 'covid/employee/employee_input_form.html', {'form': form, })
 
 
+@login_required
 def employee_update(request, employee_id):
     if request.method == 'POST':
         obj = get_object_or_404(Employee, pk=employee_id)
@@ -76,6 +124,7 @@ def employee_update(request, employee_id):
             return render(request, 'covid/employee/employee_update_form.html', {'form': form, 'employee': employee})
 
 
+@login_required
 def employee_info(request, employee_id):
     path = str(request.get_full_path())
     request.session['next_path'] = path
@@ -83,6 +132,7 @@ def employee_info(request, employee_id):
     return render(request, 'covid/employee/employee_info.html', {'employee': employee})
 
 
+@login_required
 def employee_vaccines(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
     vaccine_kind_list = VaccineKind.objects.all()
@@ -137,10 +187,26 @@ def employee_vaccines_update_form(request, vaccine_course_id):
     })
 
 
+@login_required
 def employee_delete(request):
     return render(request, 'covid/employee/employee_delete_confirm.html')
 
 
+@login_required
 def subdivision_list(request):
-    subdivisions_list = Subdivision.objects.all()
-    return render(request, 'covid/subdivision/subdivision_list.html', {'subdivisions_list': subdivisions_list})
+    req_user = request.user
+    if req_user.is_superuser:
+        subdivisions_list = Subdivision.objects.all()
+    else:
+        subdivisions_list = Subdivision.objects.filter(owner=request.user)
+    f = SubdivisionFilter(request.GET, queryset=subdivisions_list)
+    return render(request, 'covid/subdivision/subdivision_list.html',
+                  {
+                      'subdivisions_list': f.qs,
+                      'filter': f,
+                      'employee_count_sum': subdivision_get_employee_count_sum(f.qs),
+                      'employee_count_sum_first_vaccine': subdivision_get_covid_1_count_sum(f.qs),
+                      'employee_count_sum_second_vaccine': subdivision_get_covid_2_count_sum(f.qs),
+                      'employee_percent_first': subdivision_get_covid_percent_sum_first(f.qs),
+                      'employee_percent_second': subdivision_get_covid_percent_sum_second(f.qs),
+                  })

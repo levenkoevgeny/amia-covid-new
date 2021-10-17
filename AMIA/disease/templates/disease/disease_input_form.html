@@ -19,12 +19,14 @@
             {% endfor %}
         {% endif %}
     {% endfor %}
-    <div id="main-div">
-        <div class="container">
-            <br><br>
-            {% block form_title %}
-                <form class="needs-validation" action="{% url 'disease:disease-input' %}" method="post">{% csrf_token %}
-            {% endblock %}
+
+    <div class="container">
+        <br><br>
+        {% block form_title %}
+            <form class="needs-validation" action="{% url 'disease:disease-input' %}" method="post">{% csrf_token %}
+        {% endblock %}
+        <div class="shadow-lg p-3 mb-3 bg-body rounded">
+            <h5>Основные данные</h5>
             <div class="row">
                 <div class="col-md-4">
                     <div class="mb-3">
@@ -39,8 +41,9 @@
                     </div>
                 </div>
             </div>
-
-            <h5 class="mt-3 mb-3">Начало болезни/карантина</h5>
+        </div>
+        <div class="shadow-lg p-3 mb-3 bg-body rounded">
+            <h5>Начало болезни/карантина</h5>
 
             <div class="row">
                 <div class="col-md-4">
@@ -108,14 +111,14 @@
                 <div class="col-md-8">
                     <div class="mb-3">
                         <label class="form-label">Дополнительная информация</label>
-                        {% render_field form.extra_data rows="1" class+="form-control" %}
+                        {% render_field form.extra_data rows="2" class+="form-control" %}
                     </div>
                 </div>
             </div>
+        </div>
 
-
-            <h5 class="mt-3 mb-3">Заполнять после окончания болезни/карантина</h5>
-
+        <div class="shadow-lg p-3 mb-3 bg-body rounded">
+            <h5>Заполнять после окончания болезни/карантина</h5>
             <div class="row">
                 <div class="col-md-4">
                     <div class="mb-3">
@@ -130,10 +133,9 @@
                     </div>
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-secondary mb-3">Сохранить</button>
-            </form>
         </div>
+        <button type="submit" class="btn btn-secondary mb-3">Сохранить</button>
+        </form>
     </div>
 {% endblock %}
 

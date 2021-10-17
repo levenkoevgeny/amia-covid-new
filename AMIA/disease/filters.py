@@ -1,7 +1,7 @@
 import django_filters
 from django import forms
 
-from .models import Disease
+from .models import Disease, DiseaseName
 from covid.models import Subdivision
 
 
@@ -17,6 +17,7 @@ class DiseaseFilter(django_filters.FilterSet):
     ]
 
     disease_kind = django_filters.ChoiceFilter(choices=DISEASE_KIND, widget=forms.Select)
+    disease = django_filters.ModelMultipleChoiceFilter(queryset=DiseaseName.objects.all())
     employee__last_name = django_filters.CharFilter(lookup_expr='icontains')
     employee__subdivision = django_filters.ModelChoiceFilter(field_name='employee__subdivision',
                                                              queryset=Subdivision.objects.all())

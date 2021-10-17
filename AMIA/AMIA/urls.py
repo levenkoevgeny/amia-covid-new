@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import RedirectView
 from django.views.generic.base import TemplateView
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='covid/index.html')),
+    path('', login_required(TemplateView.as_view(template_name='covid/index.html'))),
     path('covid/', include('covid.urls')),
     path('covid_cadet/', include('covid_cadet.urls')),
     path('disease/', include('disease.urls')),

@@ -19,7 +19,7 @@ class EmployeeDataForm(ModelForm):
         fields = ['last_name', 'first_name',
                   'patronymic', 'rank', 'position',
                   'phone_number', 'address', 'date_of_birth',
-                  'has_contraindications', 'contraindications_explain']
+                  'has_contraindications', 'contraindications_explain', 'is_willing']
         widgets = {'date_of_birth': myDateInput}
 
 
@@ -30,5 +30,6 @@ class EmployeeFullDataForm(ModelForm):
                   'patronymic', 'rank', 'position',
                   'phone_number', 'address', 'date_of_birth',
                   'subdivision', 'sex', 'work_status', 'date_of_death',
-                  'has_contraindications', 'contraindications_explain', 'marital_status']
-        widgets = {'date_of_birth': myDateInput, 'date_of_death': myDateInput,}
+                  'has_contraindications', 'contraindications_explain',
+                  'marital_status', 'is_willing']
+        widgets = {'date_of_birth': myDateInput, 'date_of_death': myDateInput, }
