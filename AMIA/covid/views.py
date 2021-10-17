@@ -31,7 +31,6 @@ def subdivision_get_covid_2_count_sum(subdivisions_list):
         count += subdivision.get_employee_count_with_second_vaccine
     return count
 
-
 # def get_willing_count_sum(subdivision_list):
 #     count = 0
 #     for subdivision in subdivision_list:
@@ -54,6 +53,45 @@ def subdivision_get_covid_percent_sum_second(subdivisions_list):
         res = 0.0
     return round(res, 2)
 
+
+
+#
+#
+# def get_employee_count_sum(employees_list):
+#     count = 0
+#     for employee in employees_list:
+#         count += employee.get_employee_count
+#     return count
+#
+#
+# def get_employee_covid_1_count_sum(employees_list):
+#     count = 0
+#     for employee in employees_list:
+#         count += employee.get_employee_count_with_first_vaccine
+#     return count
+#
+#
+# def get_employee_covid_2_count_sum(employees_list):
+#     count = 0
+#     for employee in employees_list:
+#         count += employee.get_employee_count_with_second_vaccine
+#     return count
+#
+#
+# def get_employee_covid_percent_sum_first(employees_list):
+#     try:
+#         res = subdivision_get_covid_1_count_sum(employees_list) / subdivision_get_employee_count_sum(employees_list) * 100
+#     except ZeroDivisionError:
+#         res = 0.0
+#     return round(res, 2)
+#
+#
+# def get_employee_covid_percent_sum_second(subdivisions_list):
+#     try:
+#         res = subdivision_get_covid_2_count_sum(subdivisions_list) / subdivision_get_employee_count_sum(subdivisions_list) * 100
+#     except ZeroDivisionError:
+#         res = 0.0
+#     return round(res, 2)
 
 @login_required
 def employee_list(request):
