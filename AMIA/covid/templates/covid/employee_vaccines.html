@@ -12,7 +12,7 @@
         <div class="container">
             <br>
             <div class="d-flex justify-content-end">
-                <a href="" class="link-secondary"
+                <a href="" class="link-secondary needs-next"
                    onclick="window.open('{% url 'covid:employee-vaccines-add' employee.id %}','popup','width=300,height=400'); return false;">
                     <b>Добавить
                         курс вакцинирования</b>
@@ -36,7 +36,7 @@
                     {% for vaccine in employee.vaccinecourse_set.all %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
-                            <td><a href="" class="link-secondary"
+                            <td><a href="" class="link-secondary needs-next"
                                    onclick="window.open('{% url 'covid:employee-vaccines-update' vaccine.id %}','popup','width=300,height=400'); return false;">{{ vaccine.vaccine_kind }}</a>
                             </td>
                             <td>{{ vaccine.date1|default_if_none:"Нет данных" }}</td>

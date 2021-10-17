@@ -22,7 +22,7 @@ from django.contrib.auth.decorators import login_required
 urlpatterns = [
     path('', login_required(TemplateView.as_view(template_name='covid/index.html'))),
     path('covid/', include('covid.urls')),
-    path('covid_cadet/', include('covid_cadet.urls')),
+    # path('covid_cadet/', include('covid_cadet.urls')),
     path('disease/', include('disease.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),

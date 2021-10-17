@@ -40,7 +40,7 @@
                             {% if employee.vaccinecourse_set.exists %}
                                 {% for vaccine in employee.vaccinecourse_set.all %}
                                     <p class="mb-0 opacity-75"><a href="{% url 'covid:employee-vaccines' employee.id %}"
-                                                                  class="link-secondary"><b>{{ forloop.counter }}
+                                                                  class="link-secondary needs-next"><b>{{ forloop.counter }}
                                         этап:</b>
                                         Первая вакцина - {{ vaccine.date1|default_if_none:'Не выполнена' }}
                                         Вторая вакцина - {{ vaccine.date2|default_if_none:'Не выполнена' }}
@@ -64,7 +64,7 @@
                             {% if employee.disease_set.exists %}
                                 {% for disease in employee.disease_set.all %}
                                     <p class="mb-0 opacity-75"><a href="{% url 'disease:disease-update' disease.id %}"
-                                                                  class="link-secondary"><b>{{ forloop.counter }}</b>
+                                                                  class="link-secondary needs-next"><b>{{ forloop.counter }}</b>
                                         {{ disease.get_disease_kind }} {{ disease.date_of_begin|default_if_none:'Нет данных' }}
                                         - {{ disease.date_of_end|default_if_none:'Нет данных' }}</a></p>
                                 {% endfor %}

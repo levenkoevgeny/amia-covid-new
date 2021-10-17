@@ -13,4 +13,6 @@ urlpatterns = [
     path('<vaccine_course_id>/vaccines-update', views.employee_vaccines_update_form, name='employee-vaccines-update'),
     path('<employee_id>/info', views.employee_info, name='employee-info'),
     path('subdivisions/', views.subdivision_list, name='subdivisions'),
+    path('add-next/', views.add_next_path, name='add-next-path'),
+    path('old/', views.get_old_items, name='old'),
 ]

@@ -136,7 +136,7 @@
     <div class="container-fluid">
         {% if request.user.is_superuser %}
             <div style="text-align: right" class="mb-3">
-                <a href="{% url 'covid:employee-add' %}" class="link-secondary"><b>Добавить сотрудника</b></a>
+                <a href="{% url 'covid:employee-add' %}" class="link-secondary needs-next"><b>Добавить сотрудника</b></a>
             </div>
         {% endif %}
         {% if employees_list %}
@@ -161,7 +161,7 @@
                     <tr>
                         <td class="align-middle">{{ forloop.counter }}</td>
                         <td class="align-middle"><a href="{% url 'covid:employee-update' employee.id %}"
-                                                    class="link-secondary">{{ employee.last_name }}</a></td>
+                                                    class="link-secondary needs-next">{{ employee.last_name }}</a></td>
                         <td class="align-middle">{{ employee.first_name|default_if_none:"Нет данных" }}</td>
                         <td class="align-middle">{{ employee.patronymic|default_if_none:"Нет данных" }}</td>
                         <td class="align-middle">{{ employee.subdivision|default_if_none:"Нет данных" }}</td>

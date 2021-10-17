@@ -95,8 +95,8 @@ def subdivision_get_covid_percent_sum_second(subdivisions_list):
 
 @login_required
 def employee_list(request):
-    path = str(request.get_full_path())
-    request.session['next_path'] = path
+    # path = str(request.get_full_path())
+    # request.session['next_path'] = path
     employees_list = Employee.objects.all()
     f = EmployeeFilter(request.GET, queryset=employees_list, request=request)
     condition = "all"
@@ -164,8 +164,8 @@ def employee_update(request, employee_id):
 
 @login_required
 def employee_info(request, employee_id):
-    path = str(request.get_full_path())
-    request.session['next_path'] = path
+    # path = str(request.get_full_path())
+    # request.session['next_path'] = path
     employee = get_object_or_404(Employee, pk=employee_id)
     return render(request, 'covid/employee/employee_info.html', {'employee': employee})
 
@@ -248,3 +248,20 @@ def subdivision_list(request):
                       'employee_percent_first': subdivision_get_covid_percent_sum_first(f.qs),
                       'employee_percent_second': subdivision_get_covid_percent_sum_second(f.qs),
                   })
+
+
+def add_next_path(request):
+    if 'next_path' in request.GET:
+        request.session['next_path'] = request.GET['next_path']
+    return JsonResponse({'': ''}, safe=False)
+
+
+def get_old_items(request):
+    import requests
+    r = requests.get('http://192.168.100.9:8000/subdivisions/')
+    items = r.json()
+    for item in items:
+        subdivision = Subdivision(id=item['id'], subdivision_name=item['subdivision_name'])
+        subdivision.save()
+
+    return JsonResponse({'old': 'success'}, safe=False)
